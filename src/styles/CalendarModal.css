@@ -1,0 +1,139 @@
+.calendar-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(44, 44, 44, 0.4);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.calendar-modal {
+    background-color: var(--color-bg-paper);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft), 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.calendar-header h2 {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--color-text-main);
+}
+
+.close-button,
+.back-button {
+    color: var(--color-text-secondary);
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.close-button:hover,
+.back-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.calendar-grid.days {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+}
+
+.month-btn,
+.day-btn {
+    padding: 12px 4px;
+    border-radius: 8px;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    background-color: transparent;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.month-btn:hover,
+.day-btn:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: var(--color-border);
+}
+
+.month-btn:active,
+.day-btn:active {
+    transform: scale(0.96);
+}
+
+/* Specifics for Days */
+.day-btn {
+    padding: 8px 0;
+    font-weight: 500;
+}
+
+/* Completed Day State */
+.day-btn.completed {
+    background-color: var(--color-accent-gold);
+    color: white;
+    font-weight: 600;
+    border-color: var(--color-accent-gold);
+}
+
+.day-btn.completed:hover {
+    opacity: 0.9;
+    background-color: var(--color-accent-gold);
+    /* Keep it gold */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Sepia Mode overrides handled by variables usually, but specific tweaks if needed */
+.sepia-mode .calendar-modal {
+    border-color: rgba(62, 56, 50, 0.2);
+}

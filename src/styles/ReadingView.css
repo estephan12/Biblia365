@@ -1,0 +1,91 @@
+.reading-view {
+    width: 100%;
+    max-width: var(--reading-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm) var(--spacing-lg);
+    /* More bottom padding */
+    position: relative;
+    z-index: 1;
+    /* Ensure text is above texture if needed */
+}
+
+.reading-content {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    /* Slightly larger base */
+    line-height: 1.9;
+    /* More air */
+    color: var(--color-text-main);
+    text-align: left;
+    margin-top: var(--spacing-md);
+}
+
+.passage-heading {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-main);
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-xs);
+    display: inline-block;
+    width: 100%;
+}
+
+.verse {
+    position: relative;
+    cursor: pointer;
+    /* Enable clicking */
+    transition: background-color 0.2s;
+    border-radius: 2px;
+}
+
+.verse:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    /* Subtle hover hint */
+}
+
+.verse.highlighted {
+    background-color: rgba(255, 235, 59, 0.4);
+    /* Highligter yellow transparent */
+    box-shadow: 0 0 0 2px rgba(255, 235, 59, 0.4);
+    /* Extend slightly */
+}
+
+.sepia-mode .verse.highlighted {
+    background-color: rgba(255, 193, 7, 0.3);
+    /* Warmer orange for sepia */
+    box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.3);
+}
+
+.verse-number {
+    font-family: var(--font-ui);
+    font-size: 0.65em;
+    font-weight: 500;
+    color: var(--color-accent-gold);
+    /* Subtle gold/brown */
+    margin-right: 6px;
+    vertical-align: 2px;
+    user-select: none;
+}
+
+/* Paragraph handling */
+.paragraph-break {
+    height: var(--spacing-md);
+    /* Larger break */
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .reading-content {
+        font-size: 1.35rem;
+        /* Classic book size */
+    }
+
+    .reading-view {
+        padding: 0 var(--spacing-md) var(--spacing-lg);
+    }
+}

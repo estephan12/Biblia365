@@ -1,0 +1,131 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* Colors - Light Mode (Paper/Cream) */
+  --color-bg-paper: #F9F5EB;
+  /* Warmer cream */
+  --color-text-main: #2C2C2C;
+  /* Soft Charcoal */
+  --color-text-secondary: #5D5D5D;
+  --color-accent-sage: #8DA399;
+  --color-accent-gold: #C5A065;
+  /* Classic book gold accent */
+  --color-border: rgba(44, 44, 44, 0.08);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+  /* Typography */
+  --font-body: 'Lora', serif;
+  --font-heading: 'Libre Baskerville', serif;
+  --font-ui: 'Inter', sans-serif;
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --reading-width: 660px;
+  /* Slightly narrower for focus */
+
+  /* Texture Overlay (Noise) */
+  /* SVG noise pattern encoded as data URI */
+  --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* Sepia / Dark Mode preference */
+.sepia-mode {
+  --color-bg-paper: #E6DCC8;
+  /* Deeper vintage paper */
+  --color-text-main: #3E3832;
+  --color-text-secondary: #6B6257;
+  --color-border: rgba(62, 56, 50, 0.15);
+  --color-accent-gold: #A67B5B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-paper);
+  color: var(--color-text-main);
+  line-height: 1.8;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Paper Texture Layer */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: var(--paper-texture);
+  opacity: 0.6;
+  z-index: -1;
+  /* Behind content but on top of bg-color? No, z-index -1 puts it behind body content. */
+  /* Actually, body has bg color. To overlay texture on color, we need a pseudo element ON TOP or mix-blend-mode */
+  z-index: 9999;
+  opacity: 0.03;
+  /* Very subtle */
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+}
+
+/* Global Vignette (Optional, adds depth) */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.03) 100%);
+  z-index: 9998;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: -0.01em;
+}
+
+button {
+  font-family: var(--font-ui);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(60, 60, 60, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(60, 60, 60, 0.2);
+}
